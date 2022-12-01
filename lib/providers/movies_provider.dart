@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import '../models/models.dart';
 
@@ -12,6 +11,8 @@ class MoviesProvider extends ChangeNotifier {
 
   List<Movie> onDisplayMovies = [];
   List<Movie> onDisplayPopulars = [];
+
+  Map<int, List<Cast>> casting = {};
 
   MoviesProvider() {
     print("Movies provider inicialitzat");
@@ -42,5 +43,18 @@ class MoviesProvider extends ChangeNotifier {
     onDisplayPopulars = nowPlayingRespone.results;
 
     notifyListeners();
+  }
+
+  Future<List<Cast>> getMovieCast(int idMovie) async {
+    print("Demana info al servidor!");
+    var url = Uri.http(_baseUrl, "3/movie/$idMovie/credits",
+        {'api_key': _apiKey, 'language': _language});
+
+    final result = await http.get(url);
+
+    final creditResponse = CreditsResponse.fromJson(result.body);
+    casting[idMovie] = creditResponse.cast;
+
+    return creditResponse.cast;
   }
 }

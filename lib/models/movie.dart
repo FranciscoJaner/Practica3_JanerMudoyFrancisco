@@ -19,7 +19,7 @@ class Movie {
   });
 
   bool adult;
-  String backdropPath;
+  String? backdropPath;
   List<int> genreIds;
   int id;
   String originalLanguage;
@@ -27,7 +27,7 @@ class Movie {
   String overview;
   double popularity;
   String? posterPath;
-  DateTime releaseDate;
+  DateTime? releaseDate;
   String title;
   bool video;
   double voteAverage;

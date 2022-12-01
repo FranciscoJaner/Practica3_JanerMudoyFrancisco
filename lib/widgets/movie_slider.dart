@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../models/models.dart';
+import 'package:movies_app/models/movie.dart';
 
 class MovieSlider extends StatelessWidget {
   final List<Movie> movies;
@@ -70,7 +69,7 @@ class _MoviePoster extends StatelessWidget {
             height: 5,
           ),
           Text(
-            'Star Wars: El retorno del Jedi',
+            movie.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
