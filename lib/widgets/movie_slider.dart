@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/movie.dart';
+
+import '../models/models.dart';
 
 class MovieSlider extends StatelessWidget {
   final List<Movie> movies;

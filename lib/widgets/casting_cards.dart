@@ -43,7 +43,7 @@ class CastingCards extends StatelessWidget {
 class _CastCard extends StatelessWidget {
   final Cast cast;
 
-  const _CastCard({super.key, required this.cast});
+  const _CastCard({required this.cast});
   @override
   Widget build(BuildContext context) {
     return Container(
