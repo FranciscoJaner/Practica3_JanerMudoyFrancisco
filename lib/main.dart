@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home': (BuildContext context) => HomeScreen(),
-        'details': (BuildContext context) => DetailsScreen(),
+        'details': (BuildContext context) => DetailsScreen()
       },
       theme: ThemeData.light()
           .copyWith(appBarTheme: const AppBarTheme(color: Colors.indigo)),

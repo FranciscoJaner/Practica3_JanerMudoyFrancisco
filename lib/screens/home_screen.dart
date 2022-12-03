@@ -3,7 +3,11 @@ import 'package:movies_app/providers/movies_provider.dart';
 import 'package:movies_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
+import '../models/models.dart';
+
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final moviesProvider = Provider.of<MoviesProvider>(context);
@@ -14,7 +18,13 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Cartellera'),
         elevation: 0,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search_outlined))
+          IconButton(
+              onPressed: () {
+                showSearch(
+                    context: context,
+                    delegate: SearchMovies(moviesProvider.onDisplayMovies));
+              },
+              icon: const Icon(Icons.search_outlined))
         ],
       ),
       body: SingleChildScrollView(

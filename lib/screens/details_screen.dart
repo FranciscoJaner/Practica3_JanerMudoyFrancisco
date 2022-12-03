@@ -110,7 +110,7 @@ class _PosterAndTitile extends StatelessWidget {
                 children: [
                   const Icon(Icons.star_outline, size: 15, color: Colors.grey),
                   const SizedBox(width: 5),
-                  Text(movie.voteCount.toString(), style: textTheme.caption),
+                  Text(movie.voteAverage.toString(), style: textTheme.caption),
                 ],
               )
             ],
