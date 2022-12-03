@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/models.dart';
+import 'package:http/testing.dart';
+import '../models/models.dart';
 import 'package:movies_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class DetailsScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           _CustomAppBar(
-            movies: peli,
+            movie: peli,
           ),
           SliverList(
             delegate: SliverChildListDelegate(
@@ -34,9 +35,9 @@ class DetailsScreen extends StatelessWidget {
 }
 
 class _CustomAppBar extends StatelessWidget {
-  final Movie movies;
+  final Movie movie;
 
-  const _CustomAppBar({super.key, required this.movies});
+  const _CustomAppBar({super.key, required this.movie});
   @override
   Widget build(BuildContext context) {
     // Exactament igual que la AppBaer però amb bon comportament davant scroll
@@ -54,13 +55,13 @@ class _CustomAppBar extends StatelessWidget {
           color: Colors.black12,
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
-            movies.title,
+            movie.title,
             style: TextStyle(fontSize: 16),
           ),
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/loading.gif'),
-          image: NetworkImage(movies.fullPosterPath),
+          image: NetworkImage(movie.fullPosterPath),
           fit: BoxFit.cover,
         ),
       ),
