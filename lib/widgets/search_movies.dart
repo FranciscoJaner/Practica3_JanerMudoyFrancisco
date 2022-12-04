@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../models/models.dart';
 
+// Widget que ens permet cercar una pelicula en concret.
 class SearchMovies extends SearchDelegate {
   final List<Movie> movies;
   List<Movie> _filtro = [];
 
   SearchMovies(this.movies);
 
+// Boto que surt adalt a la dreta que quan clickam borra el que tenim seleccionat.
   @override
   List<Widget>? buildActions(BuildContext context) {
     // TODO: implement buildActions
@@ -21,6 +23,7 @@ class SearchMovies extends SearchDelegate {
     ];
   }
 
+// Boto que tenim a la esquerra que quan el clickam ens torna a la HomePage.
   @override
   Widget? buildLeading(BuildContext context) {
     // TODO: implement buildLeading
@@ -45,6 +48,7 @@ class SearchMovies extends SearchDelegate {
     );
   }
 
+// Es el que ens mostra devall el TextField las diferents sugerencias de las pelis
   @override
   Widget buildSuggestions(BuildContext context) {
     _filtro = movies.where((element) {
@@ -59,7 +63,9 @@ class SearchMovies extends SearchDelegate {
           title: Text(resultat),
           onTap: () {
             query = resultat;
+            // Recorrem l'array que conte las pelis,
             for (int i = 0; i < _filtro.length; i++) {
+              // Si el nom que hem introduit esta dins la llista, ficara el nom dintre de una Movie, que despres enviarem a la pantalla details que es la que mos montrara la informacio de la pelicula.
               if (_filtro[i].title == query) {
                 Movie resultatfinal = _filtro[i];
                 Navigator.pushNamed(context, 'details',

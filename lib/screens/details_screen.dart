@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:http/testing.dart';
 import '../models/models.dart';
 import 'package:movies_app/widgets/widgets.dart';
 
+// Clase principal que contindra els altres widgets que mostraran la informacio detallada de cada pelicula.
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: Canviar després per una instància de Peli
+    // Recoim els arguments que ens pasa el MovieSlider y el CardSwiper y els ficam dintre de la variable peli.
     final Movie peli = ModalRoute.of(context)?.settings.arguments as Movie;
 
     return Scaffold(
@@ -18,12 +18,15 @@ class DetailsScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                // Widget que monstra la palt de adalt de la pagina details a partir dels elements que hem pasat
                 _PosterAndTitile(
                   movie: peli,
                 ),
+                // Widget que ens monstra el resum de la peli.
                 _Overview(
                   movie: peli,
                 ),
+                // Widget que monstra els actors que han participat en la pelicula a traves de la id de la pelicula.
                 CastingCards(peli.id),
               ],
             ),
@@ -34,8 +37,9 @@ class DetailsScreen extends StatelessWidget {
   }
 }
 
+// Widget que ens monstra una espcie de appbar que conte la peli perque no ens surti una appBar com a tal.
 class _CustomAppBar extends StatelessWidget {
-  final Movie movie;
+  final Movie movie; // Objecte movie per recoir el que ens pasen.
 
   const _CustomAppBar({super.key, required this.movie});
   @override
@@ -61,6 +65,7 @@ class _CustomAppBar extends StatelessWidget {
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/loading.gif'),
+          // Li pasam la foto del objecte Movie que ens han pasat.
           image: NetworkImage(movie.fullPosterPath),
           fit: BoxFit.cover,
         ),
@@ -69,6 +74,7 @@ class _CustomAppBar extends StatelessWidget {
   }
 }
 
+// Widget que en mostra el titol, subtitol y titol original de la pelicula.
 class _PosterAndTitile extends StatelessWidget {
   final Movie movie;
 
@@ -85,7 +91,8 @@ class _PosterAndTitile extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/loading.gif'),
-              image: NetworkImage(movie.fullPosterPath),
+              image: NetworkImage(movie
+                  .fullPosterPath), // Indicam que la foto que ens mostri sigui la del Objecte que ens han pasat
               height: 150,
             ),
           ),
@@ -95,13 +102,13 @@ class _PosterAndTitile extends StatelessWidget {
           Column(
             children: [
               Text(
-                movie.title,
+                movie.title, // Mostram el titol de la pelicula.
                 style: textTheme.headline5,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
               Text(
-                movie.originalTitle,
+                movie.originalTitle, // Monstram el titol original.
                 style: textTheme.subtitle1,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
@@ -110,6 +117,7 @@ class _PosterAndTitile extends StatelessWidget {
                 children: [
                   const Icon(Icons.star_outline, size: 15, color: Colors.grey),
                   const SizedBox(width: 5),
+                  // Mostram las votacions que ha tengut la pelicula.
                   Text(movie.voteAverage.toString(), style: textTheme.caption),
                 ],
               )
@@ -121,6 +129,7 @@ class _PosterAndTitile extends StatelessWidget {
   }
 }
 
+// Wisget que crea un container amb el resum de la pelicula,
 class _Overview extends StatelessWidget {
   final Movie movie;
 
@@ -130,7 +139,8 @@ class _Overview extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Text(
-        movie.overview,
+        movie
+            .overview, // Indicam que el texte que ha de sortir al container sigui l'overview de la pelicula.
         textAlign: TextAlign.justify,
         style: Theme.of(context).textTheme.subtitle1,
       ),

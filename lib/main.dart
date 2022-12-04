@@ -6,20 +6,24 @@ import 'package:provider/provider.dart';
 void main() => runApp(AppState());
 
 class AppState extends StatelessWidget {
+  //Clase a la qual cridam el nostre provider.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      //
       providers: [
         ChangeNotifierProvider(
-          create: ((_) => MoviesProvider()),
+          create: ((_) =>
+              MoviesProvider()), //Cream la instacia del nostre provider.
           lazy: false,
         )
       ],
-      child: MyApp(),
+      child: MyApp(), //Criam myApp ja que sino no funcionaria correctament.
     );
   }
 }
 
+// Clase principal la qual tenim la primera ruta que s'iniciara.
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
